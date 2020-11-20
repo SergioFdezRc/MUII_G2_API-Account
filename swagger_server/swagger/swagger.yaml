@@ -1,0 +1,279 @@
+openapi: 3.0.1
+info:
+  title: Account Management API
+  description: This API is in charge of managing user accounts
+  contact:
+    name: G2 - Family Lock
+    url: https://s-computing.blogspot.com/2020/09/familylock.html
+    email: g2_family_lock@gmail.com
+  license:
+    name: CC-BY-NC-CA-4.0
+    url: https://creativecommons.org/licenses/by-nc/4.0/
+  version: "1.0"
+servers:
+- url: http://account.familylock.es
+  description: Production server
+- url: http://beta.account.familylock.es
+  description: Beta server
+paths:
+  /account/{id}:
+    get:
+      tags:
+      - Account
+      summary: Get account info
+      description: Get a given user name
+      operationId: get_account
+      parameters:
+      - name: id
+        in: path
+        description: The user id of the  logged in user
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+        example: 0
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                title: Info
+                type: string
+                example: 'Username: Antonio'
+                x-content-type: text/plain
+            application/json:
+              schema:
+                title: Info
+                type: string
+                example: '{"username":"Antonio"}'
+        "403":
+          description: Access denied or forbidden
+          content:
+            text/plain:
+              schema:
+                title: Access denied
+                type: string
+                example: Forbidden
+                x-content-type: text/plain
+        "404":
+          description: Not found response
+          content:
+            text/plain:
+              schema:
+                title: Endpoint not found
+                type: string
+                example: Not found
+                x-content-type: text/plain
+        "405":
+          description: Invalid input
+          content:
+            text/plain:
+              schema:
+                title: Invalid input
+                type: string
+                example: The format is not valid
+                x-content-type: text/plain
+      x-swagger-router-controller: Account
+      x-openapi-router-controller: openapi_server.controllers.account_controller
+    delete:
+      tags:
+      - Account
+      summary: Delete the account
+      description: Delete a given user account
+      operationId: delete_account
+      parameters:
+      - name: id
+        in: path
+        description: Account id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+        example: 0
+      responses:
+        "200":
+          description: Deleted
+          content:
+            text/plain:
+              schema:
+                title: Deleted
+                type: string
+                example: Deleted
+                x-content-type: text/plain
+        "404":
+          description: Not found response
+          content:
+            text/plain:
+              schema:
+                title: Endpoint not found
+                type: string
+                example: Not found
+                x-content-type: text/plain
+        "405":
+          description: Invalid input
+          content:
+            text/plain:
+              schema:
+                title: Invalid input
+                type: string
+                example: The format is not valid
+                x-content-type: text/plain
+      x-swagger-router-controller: Account
+      x-openapi-router-controller: openapi_server.controllers.account_controller
+  /account:
+    put:
+      tags:
+      - Account
+      summary: Update account password
+      description: Update a given account. The user name cannot be modified.
+      operationId: update_account
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAccount'
+        required: true
+      responses:
+        "200":
+          description: Updated
+          content:
+            text/plain:
+              schema:
+                title: Updated
+                type: string
+                example: Updated
+                x-content-type: text/plain
+        "404":
+          description: Not found response
+          content:
+            text/plain:
+              schema:
+                title: Endpoint not found
+                type: string
+                example: Not found
+                x-content-type: text/plain
+        "405":
+          description: Invalid input
+          content:
+            text/plain:
+              schema:
+                title: Invalid input
+                type: string
+                example: The format is not valid
+                x-content-type: text/plain
+        "409":
+          description: DB index conflict
+          content:
+            text/plain:
+              schema:
+                title: Index conflict
+                type: string
+                example: There is a conflict
+                x-content-type: text/plain
+      x-swagger-router-controller: Account
+      x-openapi-router-controller: openapi_server.controllers.account_controller
+    post:
+      tags:
+      - Account
+      summary: Add a new account to the system
+      description: Adds a user account to the system
+      operationId: add_account
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Account'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                title: OK
+                type: string
+                example: OK
+                x-content-type: text/plain
+            application/json:
+              schema:
+                title: OK
+                type: string
+                example: OK
+        "201":
+          description: Created
+          content:
+            text/plain:
+              schema:
+                title: Created
+                type: string
+                example: Created
+                x-content-type: text/plain
+        "404":
+          description: Not found response
+          content:
+            text/plain:
+              schema:
+                title: Endpoint not found
+                type: string
+                example: Not found
+                x-content-type: text/plain
+        "405":
+          description: Invalid input
+          content:
+            text/plain:
+              schema:
+                title: Invalid input
+                type: string
+                example: The format is not valid
+                x-content-type: text/plain
+        "409":
+          description: DB index conflict
+          content:
+            text/plain:
+              schema:
+                title: Index conflict
+                type: string
+                example: There is a conflict
+                x-content-type: text/plain
+      x-swagger-router-controller: Account
+      x-openapi-router-controller: openapi_server.controllers.account_controller
+components:
+  schemas:
+    Account:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+          format: password
+        age:
+          type: integer
+        birthdate:
+          type: string
+      example:
+        username: Family Lock
+        password: '*****'
+        age: 18
+        birthdate: 11/11/1198
+      x-body-name: account
+    UpdateAccount:
+      type: object
+      properties:
+        username:
+          type: string
+        old_password:
+          type: string
+          format: password
+        new_password:
+          type: string
+          format: password
+      example:
+        username: Family Lock
+        old_password: '*****'
+        new_password: '*****'
+      x-body-name: update_account
+
