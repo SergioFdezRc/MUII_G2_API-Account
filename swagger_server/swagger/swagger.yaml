@@ -76,7 +76,7 @@ paths:
                 example: The format is not valid
                 x-content-type: text/plain
       x-swagger-router-controller: Account
-      x-openapi-router-controller: openapi_server.controllers.account_controller
+      x-openapi-router-controller: swagger_server.controllers.account_controller
     delete:
       tags:
       - Account
@@ -122,7 +122,7 @@ paths:
                 example: The format is not valid
                 x-content-type: text/plain
       x-swagger-router-controller: Account
-      x-openapi-router-controller: openapi_server.controllers.account_controller
+      x-openapi-router-controller: swagger_server.controllers.account_controller
   /account:
     put:
       tags:
@@ -174,7 +174,7 @@ paths:
                 example: There is a conflict
                 x-content-type: text/plain
       x-swagger-router-controller: Account
-      x-openapi-router-controller: openapi_server.controllers.account_controller
+      x-openapi-router-controller: swagger_server.controllers.account_controller
     post:
       tags:
       - Account
@@ -239,7 +239,7 @@ paths:
                 example: There is a conflict
                 x-content-type: text/plain
       x-swagger-router-controller: Account
-      x-openapi-router-controller: openapi_server.controllers.account_controller
+      x-openapi-router-controller: swagger_server.controllers.account_controller
 components:
   schemas:
     Account:
