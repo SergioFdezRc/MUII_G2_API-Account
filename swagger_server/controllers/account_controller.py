@@ -6,19 +6,19 @@ from swagger_server.models.update_account import UpdateAccount  # noqa: E501
 from swagger_server import util
 
 
-def add_account(body):  # noqa: E501
+def add_account(account):  # noqa: E501
     """Add a new account to the system
 
     Adds a user account to the system # noqa: E501
 
-    :param body: 
-    :type body: dict | bytes
+    :param account:
+    :type account: dict | bytes
 
     :rtype: str
     """
     if connexion.request.is_json:
-        body = Account.from_dict(connexion.request.get_json())  # noqa: E501
-    return 'do some magic!'
+        account = Account.from_dict(connexion.request.get_json())  # noqa: E501
+    return account
 
 
 def delete_account(id):  # noqa: E501
@@ -47,16 +47,16 @@ def get_account(id):  # noqa: E501
     return 'do some magic!'
 
 
-def update_account(body):  # noqa: E501
+def update_account(update_account):  # noqa: E501
     """Update account password
 
     Update a given account. The user name cannot be modified. # noqa: E501
 
-    :param body: 
-    :type body: dict | bytes
+    :param update_account:
+    :type update_account: dict | bytes
 
     :rtype: str
     """
     if connexion.request.is_json:
-        body = UpdateAccount.from_dict(connexion.request.get_json())  # noqa: E501
-    return 'do some magic!'
+        update_account = UpdateAccount.from_dict(connexion.request.get_json())  # noqa: E501
+    return update_account
