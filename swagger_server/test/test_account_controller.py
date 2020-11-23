@@ -25,7 +25,7 @@ class TestAccountController(BaseTestCase):
             data=json.dumps(body),
             content_type='application/json')
         # TODO: este test falla. Devuelve un 500
-        self.assert500(response,
+        self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
     def test_delete_account(self):
@@ -55,14 +55,14 @@ class TestAccountController(BaseTestCase):
 
         Update account password
         """
-        body = UpdateAccount()
+        body = UpdateAccount('username', 'old_password', 'new_password')
         response = self.client.open(
             '/account',
             method='PUT',
             data=json.dumps(body),
             content_type='application/json')
         # TODO: este test falla. Devuelve un 500
-        self.assert500(response,
+        self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
 
