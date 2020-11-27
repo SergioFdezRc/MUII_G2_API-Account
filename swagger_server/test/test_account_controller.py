@@ -14,7 +14,6 @@ from swagger_server.test import BaseTestCase
 class TestAccountController(BaseTestCase):
     """AccountController integration test stubs"""
 
-    @mock.patch("swagger_server.db.Database.PostgresDB")
     @mock.patch("swagger_server.db.Database.PostgresDB.add_new_account")
     @mock.patch("swagger_server.db.Database.PostgresDB.get_account_id_by_username")
     def test_add_account(self, mocked_get_account_id_by_username, mocked_add_new_account):
