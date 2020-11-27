@@ -65,6 +65,6 @@ class PostgresDB:
     def get_account_id_by_username_and_password(self, username: str, password: str):
         self.connect()
         account_id = self.__execute(
-            GET_ACCOUNT_ID_BY_USERNAME_AND_PASSWORD % {"username": username, "password": password})
+            GET_ACCOUNT_ID_BY_USERNAME_AND_PASSWORD, {"username": username, "password": password})
         self.close()
         return account_id
