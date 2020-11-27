@@ -24,11 +24,11 @@ WHERE id = %(account_id)s;
 GET_ACCOUNT_ID_BY_USERNAME = """
 SELECT id
 FROM account
-WHERE username = '%(username)s';
+WHERE username = %(username)s;
 """
 
 GET_ACCOUNT_ID_BY_USERNAME_AND_PASSWORD = """
 SELECT *
 FROM account
-WHERE username = '%(username)s' and password = '%(password)s';
+WHERE username = %(username)s and password = %(password)s;
 """
