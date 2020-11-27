@@ -53,9 +53,8 @@ class PostgresDB:
 
     def update_account(self, account_id: int, password: str = ''):
         self.connect()
-        last_location = self.__execute(UPDATE_ACCOUNT, {"account_id": account_id, "password": password})
+        self.__execute(UPDATE_ACCOUNT, {"account_id": account_id, "password": password})
         self.close()
-        return last_location
 
     def get_account_id_by_username(self, username: str):
         self.connect()
