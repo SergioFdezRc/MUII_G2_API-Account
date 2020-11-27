@@ -16,7 +16,7 @@ servers:
 - url: http://beta.account.familylock.es
   description: Beta server
 paths:
-  /account/{id}:
+  /account/{account_id}:
     get:
       tags:
       - Account
@@ -24,7 +24,7 @@ paths:
       description: Get a given user name
       operationId: get_account
       parameters:
-      - name: id
+      - name: account_id
         in: path
         description: The user id of the  logged in user
         required: true
@@ -84,7 +84,7 @@ paths:
       description: Delete a given user account
       operationId: delete_account
       parameters:
-      - name: id
+      - name: account_id
         in: path
         description: Account id
         required: true

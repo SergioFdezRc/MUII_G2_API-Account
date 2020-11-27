@@ -24,7 +24,6 @@ class TestAccountController(BaseTestCase):
             method='POST',
             data=json.dumps(body),
             content_type='application/json')
-        # TODO: este test falla. Devuelve un 500
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
@@ -61,7 +60,6 @@ class TestAccountController(BaseTestCase):
             method='PUT',
             data=json.dumps(body),
             content_type='application/json')
-        # TODO: este test falla. Devuelve un 500
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 

@@ -1,3 +1,12 @@
 connexion == 2.6.0
 python_dateutil == 2.6.0
 setuptools >= 21.0.0
+openapi==1.1.0
+psycopg2-binary
+gunicorn
+click==7.1.2
+Flask==1.1.2
+itsdangerous==1.1.0
+Jinja2==2.11.2
+MarkupSafe==1.1.1
+Werkzeug==1.0.1
