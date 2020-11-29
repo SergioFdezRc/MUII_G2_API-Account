@@ -1,7 +1,7 @@
 import connexion
 from flask import jsonify
+from muii_g2_family_lock_database.Database import PostgresDB
 
-from swagger_server.db.Database import PostgresDB
 from swagger_server.models.account import Account  # noqa: E501
 from swagger_server.models.update_account import UpdateAccount  # noqa: E501
 

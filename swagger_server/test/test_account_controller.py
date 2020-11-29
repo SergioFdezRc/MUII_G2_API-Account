@@ -14,8 +14,8 @@ from swagger_server.test import BaseTestCase
 class TestAccountController(BaseTestCase):
     """AccountController integration test stubs"""
 
-    @mock.patch("swagger_server.db.Database.PostgresDB.add_new_account")
-    @mock.patch("swagger_server.db.Database.PostgresDB.get_account_id_by_username")
+    @mock.patch("muii_g2_family_lock_database.Database.PostgresDB.add_new_account")
+    @mock.patch("muii_g2_family_lock_database.Database.PostgresDB.get_account_id_by_username")
     def test_add_account(self, mocked_get_account_id_by_username, mocked_add_new_account):
         """Test case for add_account
 
@@ -33,8 +33,8 @@ class TestAccountController(BaseTestCase):
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
-    @mock.patch("swagger_server.db.Database.PostgresDB.delete_account")
-    @mock.patch("swagger_server.db.Database.PostgresDB.get_account_by_id")
+    @mock.patch("muii_g2_family_lock_database.Database.PostgresDB.delete_account")
+    @mock.patch("muii_g2_family_lock_database.Database.PostgresDB.get_account_by_id")
     def test_delete_account(self, mocked_get_account_by_id, mocked_delete_account):
         """Test case for delete_account
 
@@ -47,7 +47,7 @@ class TestAccountController(BaseTestCase):
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
-    @mock.patch("swagger_server.db.Database.PostgresDB.get_account_by_id")
+    @mock.patch("muii_g2_family_lock_database.Database.PostgresDB.get_account_by_id")
     def test_get_account(self, mocked_get_account_by_id):
         """Test case for get_account
 
@@ -63,8 +63,8 @@ class TestAccountController(BaseTestCase):
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
-    @mock.patch("swagger_server.db.Database.PostgresDB.update_account")
-    @mock.patch("swagger_server.db.Database.PostgresDB.get_account_id_by_username_and_password")
+    @mock.patch("muii_g2_family_lock_database.Database.PostgresDB.update_account")
+    @mock.patch("muii_g2_family_lock_database.Database.PostgresDB.get_account_id_by_username_and_password")
     def test_update_account(self, mocked_get_account_id_by_username_and_password, mocked_update_account):
         """Test case for update_account
 
