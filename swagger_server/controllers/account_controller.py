@@ -18,12 +18,15 @@ def add_account(account):  # noqa: E501
     """
     if connexion.request.is_json:
         account = Account.from_dict(connexion.request.get_json())  # noqa: E501
-        db = PostgresDB()
-        info = db.get_account_id_by_username(account.username)
-        if len(info) > 0:
-            return 'The user %s already exists' % account.username, 409
-        db.add_new_account(account.username, account.password, account.birthdate, account.age)
-
+    db = PostgresDB()
+    info = db.get_account_id_by_username(account.username)
+    if "Error" in info:
+        return info
+    if len(info) > 0:
+        return 'The user %s already exists' % account.username, 409
+    error = db.add_new_account(account.username, account.password, account.birthdate, account.age)
+    if error:
+        return error
     return "OK. User %s created" % account.username, 200
 
 
@@ -40,8 +43,12 @@ def delete_account(account_id):  # noqa: E501
     db = PostgresDB()
 
     account = db.get_account_by_id(account_id)
+    if "Error" in account:
+        return account
     if len(account) > 0:
-        db.delete_account(account_id)
+        error = db.delete_account(account_id)
+        if error:
+            return error
         return 'The account has been removed', 200
     else:
         return 'Account not found' % account_id, 404
@@ -59,6 +66,8 @@ def get_account(account_id):  # noqa: E501
     """
     db = PostgresDB()
     account = db.get_account_by_id(account_id)
+    if "Error" in account:
+        return account
     if len(account) > 0:
         account = account[0]
         return jsonify({"username": account[1],
@@ -81,13 +90,16 @@ def update_account(update_account):  # noqa: E501
 
     if connexion.request.is_json:
         update_account = UpdateAccount.from_dict(connexion.request.get_json())  # noqa: E501
-        db = PostgresDB()
-        info = db.get_account_id_by_username_and_password(update_account.username, update_account.old_password)
-        if len(info) > 0:
-            info = info[0]
-            if update_account.old_password == update_account.new_password:
-                return 'Passwords match', 409
-            db.update_account(info[0], update_account.new_password)
-            return "Password changed", 200
-        return 'Incorrect password', 204
-    return 'invalid format', 405
+    db = PostgresDB()
+    info = db.get_account_id_by_username_and_password(update_account.username, update_account.old_password)
+    if "Error" in info:
+        return info
+    if len(info) > 0:
+        info = info[0]
+        if update_account.old_password == update_account.new_password:
+            return 'Passwords match', 409
+        error = db.update_account(info[0], update_account.new_password)
+        if error:
+            return error
+        return "Password changed", 200
+    return 'Incorrect password', 204
