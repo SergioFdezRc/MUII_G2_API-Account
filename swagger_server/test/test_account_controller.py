@@ -30,7 +30,6 @@ class TestAccountController(BaseTestCase):
             method='POST',
             data=json.dumps(body),
             content_type='application/json')
-        mocked_add_new_account.assert_called_once()
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
