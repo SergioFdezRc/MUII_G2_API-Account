@@ -22,8 +22,9 @@ class TestAccountController(BaseTestCase):
         Add a new account to the system
         """
         body = Account()
-        mocked_get_account_id_by_username.return_value = []
+        mocked_get_account_id_by_username.return_value = [7,]
         mocked_add_new_account.assert_not_called()
+        mocked_add_new_account.return_value = None
         response = self.client.open(
             '/account',
             method='POST',
@@ -41,9 +42,11 @@ class TestAccountController(BaseTestCase):
         Delete the account
         """
         mocked_get_account_by_id.return_value = [1]
+        mocked_delete_account.return_Value = None
         response = self.client.open(
             '/account/{id}'.format(id=56),
             method='DELETE')
+        mocked_delete_account.assert_called_once()
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
@@ -75,6 +78,7 @@ class TestAccountController(BaseTestCase):
             [1, "mocked_user", "mocked_pass", '2020-01-01', 30]
         ]
         mocked_update_account.assert_not_called()
+        mocked_update_account.return_value = None
         response = self.client.open(
             '/account',
             method='PUT',
