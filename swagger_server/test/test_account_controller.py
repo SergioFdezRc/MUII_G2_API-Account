@@ -22,7 +22,7 @@ class TestAccountController(BaseTestCase):
         Add a new account to the system
         """
         body = Account()
-        mocked_get_account_id_by_username.return_value = [999999]
+        mocked_get_account_id_by_username.return_value = []
         mocked_add_new_account.assert_not_called()
         mocked_add_new_account.return_value = None
         response = self.client.open(
