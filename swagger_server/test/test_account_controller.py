@@ -40,8 +40,10 @@ class TestAccountController(BaseTestCase):
 
         Delete the account
         """
-        mocked_get_account_by_id.return_value = [1]
-        mocked_delete_account.return_Value = None
+        mocked_get_account_by_id.return_value = [
+            [1]
+        ]
+        mocked_delete_account.return_value = None
         response = self.client.open(
             '/account/{id}'.format(id=56),
             method='DELETE')
