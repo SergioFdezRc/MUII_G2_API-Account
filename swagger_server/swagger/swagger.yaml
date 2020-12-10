@@ -11,10 +11,10 @@ info:
     url: https://creativecommons.org/licenses/by-nc/4.0/
   version: "1.0"
 servers:
-- url: https://muii-g2-api-account.herokuapp.com
-  description: Production server
-- url: http://beta.account.familylock.es
-  description: Beta server
+  - url: https://muii-g2-api-account.herokuapp.com/
+    description: "Production server (uses live data)"
+  - url: http://beta.muii-g2-api-account.herokuapp.com/
+  description: "Testing server (uses test data)" 
 paths:
   /account/{account_id}:
     get:
