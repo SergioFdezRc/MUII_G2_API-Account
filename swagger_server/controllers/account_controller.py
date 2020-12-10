@@ -72,7 +72,8 @@ def get_account(account_id):  # noqa: E501
         account = account[0]
         return jsonify({"username": account[1],
                         "birthdate": account[3],
-                        "age": account[4]})
+                        "age": account[4],
+                        "role": account[6]})
 
     return jsonify(msg='Account not found'), 404
 
