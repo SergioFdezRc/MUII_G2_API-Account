@@ -14,7 +14,7 @@ class Account(Model):
 
     Do not edit the class manually.
     """
-    def __init__(self, username: str=None, password: str=None, age: int=None, birthdate: str=None, email_confirmed_at: str=None, role: str=None):  # noqa: E501
+    def __init__(self, username: str=None, password: str=None, age: int=None, birthdate: str=None):  # noqa: E501
         """Account - a model defined in Swagger
 
         :param username: The username of this Account.  # noqa: E501
@@ -25,18 +25,12 @@ class Account(Model):
         :type age: int
         :param birthdate: The birthdate of this Account.  # noqa: E501
         :type birthdate: str
-        :param email_confirmed_at: The confirmed email date of this Account.  # noqa: E501
-        :type email_confirmed_at: str
-        :param role: The role of this Account.  # noqa: E501
-        :type role: str
         """
         self.swagger_types = {
             'username': str,
             'password': str,
             'age': int,
-            'birthdate': str,
-            'email_confirmed_at': str,
-            'role': str
+            'birthdate': str
         }
 
         self.attribute_map = {
@@ -44,14 +38,11 @@ class Account(Model):
             'password': 'password',
             'age': 'age',
             'birthdate': 'birthdate',
-            'email_confirmed_at': 'birthdate'
         }
         self._username = username
         self._password = password
         self._age = age
         self._birthdate = birthdate
-        self._email_confirmed_at = email_confirmed_at
-        self._role = role 
 
     @classmethod
     def from_dict(cls, dikt) -> 'Account':
@@ -147,46 +138,3 @@ class Account(Model):
         """
 
         self._birthdate = birthdate
-
-    @property
-    def email_confirmed_at(self) -> str:
-        """Gets the role this Account.
-
-
-        :return: The confirmed email date of this Account..
-        :rtype: str
-        """
-        return self._email_confirmed_at
-
-    @email_confirmed_at.setter
-    def email_confirmed_at(self, email_confirmed_at: str):
-        """Sets the confirmed email date of this Account..
-
-
-        :param birthdate: The confirmed email date of this Account..
-        :type birthdate: str
-        """
-
-        self._email_confirmed_at = email_confirmed_at
-
-    @property
-    def role(self) -> str:
-        """Gets the role of this Account.
-
-
-        :return: The role of this Account.
-        :rtype: str
-        """
-        return self._role
-
-    @role.setter
-    def role(self, role: str):
-        """Sets the role of this Account..
-
-
-        :param birthdate: The role of this Account..
-        :type birthdate: str
-        """
-
-        self._role = role
-

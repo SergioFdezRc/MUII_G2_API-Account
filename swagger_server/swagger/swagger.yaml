@@ -254,17 +254,11 @@ components:
           type: integer
         birthdate:
           type: string
-        email_confirmed_at:
-          type: string
-        role:
-          type: string
       example:
         username: Family Lock
         password: '*****'
         age: 18
         birthdate: 11/11/1198
-        email_confirmed_at: 01/01/2020
-        role: admin
       x-body-name: account
     UpdateAccount:
       type: object
